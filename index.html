@@ -1,93 +1,127 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Seemedik Portal</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background: #f2f2f2;
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #111;
+      color: #eaeaea;
     }
     .container {
-      max-width: 400px;
-      margin: 80px auto;
-      background: white;
-      padding: 25px;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      max-width: 420px;
+      margin: 0 auto;
+      padding: 24px 18px 40px;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+    .logo span {
+      font-size: 20px;
+      font-weight: bold;
+      color: #4da3ff;
     }
     h2 {
-      text-align: center;
+      font-size: 18px;
+      margin-bottom: 6px;
     }
-    input, button {
+    .sub {
+      font-size: 13px;
+      color: #9aa0a6;
+      margin-bottom: 18px;
+    }
+    label {
+      font-size: 14px;
+      display: block;
+      margin-bottom: 6px;
+    }
+    input {
       width: 100%;
-      padding: 10px;
-      margin-top: 10px;
-    }
-    button {
-      background: #007bff;
-      color: white;
-      border: none;
-      cursor: pointer;
+      padding: 12px;
+      font-size: 15px;
+      border-radius: 6px;
+      border: 1px solid #ff4d4f;
+      background: #1c1c1c;
+      color: #fff;
     }
     .error {
-      color: red;
-      margin-top: 10px;
-      text-align: center;
+      font-size: 13px;
+      color: #ff4d4f;
+      margin-top: 6px;
     }
-    .success {
-      margin-top: 15px;
-      text-align: center;
+    button {
+      width: 100%;
+      margin-top: 22px;
+      padding: 12px;
+      background: #0b5ed7;
+      border: none;
+      color: #fff;
+      font-size: 16px;
+      border-radius: 6px;
+      cursor: pointer;
     }
-    .success a {
-      display: inline-block;
+    button:hover {
+      background: #0a53be;
+    }
+    .info {
+      margin-top: 28px;
+      font-size: 13px;
+      line-height: 1.6;
+      color: #cfcfcf;
+    }
+    .example {
       margin-top: 10px;
-      padding: 10px 15px;
-      background: green;
-      color: white;
-      text-decoration: none;
-      border-radius: 5px;
+      color: #9aa0a6;
     }
   </style>
 </head>
 <body>
+  <div class="container">
+    <div class="logo">
+      <span>seemedik</span>
+      <span style="color:#f5b400">Portal</span>
+    </div>
 
-<div class="container">
-  <h2>Hasil Pemeriksaan</h2>
+    <h2>Hasil Pemeriksaan</h2>
+    <div class="sub">Examination Result</div>
 
-  <label>PIN *</label>
-  <input type="text" id="pin" placeholder="Masukkan PIN (yyyymmdd)">
+    <p class="sub">Silahkan masukkan PIN untuk melihat Hasil Pemeriksaan<br>
+    <em>Please enter your PIN to see the Examination Result</em></p>
 
-  <button onclick="cekPIN()">Submit</button>
+    <label>PIN *</label>
+    <input type="text" placeholder="Tanggal Lahir / Date of Birth (yyyymmdd)">
+    <div class="error">The PIN field is required</div>
 
-  <p style="font-size: 13px; margin-top: 10px;">
-    Masukkan tanggal lahir sebagai PIN dengan format <b>yyyymmdd</b><br>
-    Contoh: <b>19960604</b>
-  </p>
+    <button>Submit</button>
 
-  <div id="message"></div>
-</div>
+    <div class="info">
+      Masukkan tanggal lahir sebagai PIN dengan format yyyymmdd<br>
+      <em>Enter your date of birth as a PIN with the format yyyymmdd</em><br><br>
+      4 digit pertama adalah tahun (yyyy)<br>
+      2 digit berikutnya adalah bulan (mm)<br>
+      2 digit terakhir adalah tanggal (dd)
+      <div class="example">Contoh: 19801231 (Tahun 1980, Bulan 12 dan Tanggal 31)</div>
+    </div>
+  </div>
+  <script>
+    const btn = document.querySelector('button');
+    const input = document.querySelector('input');
 
-<script>
-  function cekPIN() {
-    const pin = document.getElementById("pin").value;
-    const message = document.getElementById("message");
-
-    if (pin === "19960604") {
-      message.innerHTML = `
-        <div class="success">
-          <p>Data ditemukan ✅</p>
-          <a href="PT_Hillcon_Jaya_Sakti_FERO_DELTA_ADITYAWAN.pdf" target="_blank">
-            Lihat Berkas
-          </a>
-        </div>
-      `;
-    } else {
-      message.innerHTML = `<p class="error">PIN tidak ditemukan ❌</p>`;
-    }
-  }
-</script>
-
+    btn.addEventListener('click', () => {
+      const pin = input.value.trim();
+      // contoh tanggal lahir: 19960604
+      if(pin === '19960604'){
+        window.open('PT_Astaka_Dodol_FERO_DELTA_ADITYAWAN 1.2.pdf', '_blank');
+      } else {
+        alert('PIN tidak sesuai atau data tidak ditemukan');
+      }
+    });
+  </script>
 </body>
 </html>
