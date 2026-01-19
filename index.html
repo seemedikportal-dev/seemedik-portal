@@ -1,29 +1,15 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-  <meta charset="UTF-8">
-  <title>seemedik Portal</title>
-</head>
-<body>
-  <h2>Masukkan PIN (Tanggal Lahir: yyyymmdd)</h2>
+<input type="text" id="pin" placeholder="Masukkan tanggal (yyyymmdd)">
+<button onclick="cekPIN()">Lihat Hasil</button>
 
-  <input type="text" id="pin" placeholder="Contoh: 19960604">
-  <button onclick="cekPIN()">Lihat Hasil</button>
+<script>
+function cekPIN() {
+  const pin = document.getElementById("pin").value;
 
-  <script>
-    const data = {
-      "19960604": "PT_Hillcon_Jaya_Sakti_FERO_DELTA_ADITYAWAN.pdf"
-    };
-
-    function cekPIN() {
-      const pin = document.getElementById("pin").value;
-
-      if (data[pin]) {
-        window.location.href = data[pin];
-      } else {
-        alert("Data tidak ditemukan!");
-      }
-    }
-  </script>
-</body>
-</html>
+  // Contoh: jika PIN cocok
+  if (pin === "19960604") {
+    window.location.href = "PT_Hillcon_Jaya_Sakti_FERO_DELTA_ADITYAWAN.pdf";
+  } else {
+    alert("PIN tidak ditemukan!");
+  }
+}
+</script>
