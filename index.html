@@ -1,15 +1,93 @@
-<input type="text" id="pin" placeholder="Masukkan tanggal (yyyymmdd)">
-<button onclick="cekPIN()">Lihat Hasil</button>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Seemedik Portal</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f2f2f2;
+    }
+    .container {
+      max-width: 400px;
+      margin: 80px auto;
+      background: white;
+      padding: 25px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h2 {
+      text-align: center;
+    }
+    input, button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+    }
+    button {
+      background: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    .error {
+      color: red;
+      margin-top: 10px;
+      text-align: center;
+    }
+    .success {
+      margin-top: 15px;
+      text-align: center;
+    }
+    .success a {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 10px 15px;
+      background: green;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2>Hasil Pemeriksaan</h2>
+
+  <label>PIN *</label>
+  <input type="text" id="pin" placeholder="Masukkan PIN (yyyymmdd)">
+
+  <button onclick="cekPIN()">Submit</button>
+
+  <p style="font-size: 13px; margin-top: 10px;">
+    Masukkan tanggal lahir sebagai PIN dengan format <b>yyyymmdd</b><br>
+    Contoh: <b>19960604</b>
+  </p>
+
+  <div id="message"></div>
+</div>
 
 <script>
-function cekPIN() {
-  const pin = document.getElementById("pin").value;
+  function cekPIN() {
+    const pin = document.getElementById("pin").value;
+    const message = document.getElementById("message");
 
-  // Contoh: jika PIN cocok
-  if (pin === "19960604") {
-    window.location.href = "PT_Hillcon_Jaya_Sakti_FERO_DELTA_ADITYAWAN.pdf";
-  } else {
-    alert("PIN tidak ditemukan!");
+    if (pin === "19960604") {
+      message.innerHTML = `
+        <div class="success">
+          <p>Data ditemukan ✅</p>
+          <a href="PT_Hillcon_Jaya_Sakti_FERO_DELTA_ADITYAWAN.pdf" target="_blank">
+            Lihat Berkas
+          </a>
+        </div>
+      `;
+    } else {
+      message.innerHTML = `<p class="error">PIN tidak ditemukan ❌</p>`;
+    }
   }
-}
 </script>
+
+</body>
+</html>
